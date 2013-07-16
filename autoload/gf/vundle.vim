@@ -15,12 +15,25 @@ function! gf#vundle#find() "{{{2
       break
     endif
   endfor
+  let path = s:pick_file(path)
 
   return !empty(path) ? {
-        \ 'path' : isdirectory(path) ? path . '/' : path,
+        \ 'path' : path,
         \ 'line' : 0,
         \ 'col' : 0,
         \ } : 0
+endfunction
+
+function! s:pick_file(path)
+  for dir in g:gf_vundle_directories
+    let ext = (dir == 'doc' ? 'txt': 'vim')
+    let files = split(globpath(a:path . '/' . dir, '**/*.' . ext), "\n")
+    if !empty(files)
+      return files[0]
+    endif
+  endfor
+
+  return ""
 endfunction
 
 function! s:find_from_neobundle(package) "{{{2

@@ -10,6 +10,11 @@ set cpo&vim
 
 " let g:gf_vundle_debug = get(g:, 'g:gf_vundle_debug', 1)
 let g:gf_vundle_debug = get(g:, 'g:gf_vundle_debug', 0)
+let g:gf_vundle_directories = get(g:, '', [
+      \ 'plugin', 'autoload', 'doc',
+      \ 'syntax', 'ftplugin', 'colors',
+      \ 'macros',
+      \ ])
 
 call gf#user#extend('gf#vundle#find', 1000)
 
