@@ -80,9 +80,9 @@ function! s:parse_line(line)
     call s:log("abort line : %s", a:line)
     return ""
   endif
-  let q = '["' . "'" . ']'
-  let s = matchstr(a:line, q. '[a-zA-Z0-9_\-/]\+' . q)
-  call s:log(string(q. '[a-zA-Z0-9_\-\./]\+' . q))
+  let q = "[\"']"
+  let s = matchstr(a:line, q. '[a-zA-Z0-9_\-/\.]\+' . q)
+  call s:log(q. '[a-zA-Z0-9_\-\./]\+' . q)
   let package = substitute(s, '\(' . q . '\|\.git' . q . '\?$\)', '', 'g')
 
   let package = fnamemodify(package, ':p:t')
